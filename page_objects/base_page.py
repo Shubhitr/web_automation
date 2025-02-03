@@ -32,6 +32,9 @@ class BasePage:
     def get_abc(self):
         pass
 
+    def get_git_fetcg(self):
+        pass
+
 
 
 
