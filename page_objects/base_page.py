@@ -29,5 +29,9 @@ class BasePage:
         pass
 
 
+    def get_abc(self):
+        pass
+
+
 
 
