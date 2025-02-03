@@ -35,6 +35,9 @@ class BasePage:
     def get_git_fetcg(self):
         pass
 
+    def complex_code(self):
+        pass
+
 
 
 
