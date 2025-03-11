@@ -1,6 +1,7 @@
 import time
 
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.support.select import Select
@@ -23,24 +24,33 @@ from conftest import driver
 d = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 d.get("https://www.flipkart.com")
 # open the new window
-d.execute_script("window.open('https://www.amazon.com')")
+d.execute_script("window.open('https://practice.expandtesting.com/dropdown#google_vignette')")
 d.maximize_window()
 
 
 
-d.execute_script("window.open('https://mypage.rediff.com/login')")
-d.execute_script("window.open('https://demo.automationtesting.in/Register.html')")
+# d.execute_script("window.open('https://mypage.rediff.com/login')")
+# d.execute_script("window.open('https://www.amazon.com/Best-Sellers/zgbs')")
 
 
-tab_l = d.window_handles
-print(tab_l)
-d.switch_to.window(tab_l[0])
-d.switch_to.window(tab_l[1])
+# tab_l = d.window_handles
+# print(tab_l)
+# d.switch_to.window(tab_l[0])
+# d.switch_to.window(tab_l[1])
+
 
 # USing Select for dropdown
 
-ele = d.find_element(By.XPATH, "//select[@id='Skills']")
-drop_drown = Select(ele)
+
+select_element = WebDriverWait(d,20).until(EC.visibility_of_element_located((By.XPATH, "//select[@id='dropdown']")))
+drop_drown = Select(select_element)
+drop_drown.s
+
+drop_drown_op= drop_drown.options
+print(drop_drown_op)
+for item in drop_drown_op:
+    print(item.text)
+breakpoint()
 drop_drown.select_by_visible_text("Android")
 options = drop_drown.options
 
@@ -57,7 +67,7 @@ for item in options:
 # Alert_POPUP
 # ele_a = WebDriverWait(d,10).until(EC.visibility_of_element_located((By.XPATH, "//button[@onclick='jsPrompt()']")))
 # ele_a.click()
-# alert_popup= d.switch_to.alert
+alert_popup= d.switch_to.alert
 
 # alert_popup.accept()
 # alert_popup.send_keys()
